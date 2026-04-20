@@ -2,7 +2,6 @@ import tsPlugin from "@typescript-eslint/eslint-plugin";
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
-import importPlugin from "eslint-plugin-import";
 
 const eslintConfig = defineConfig([
   ...nextVitals,
@@ -11,7 +10,6 @@ const eslintConfig = defineConfig([
   {
     plugins: {
       "@typescript-eslint": tsPlugin,
-      import: importPlugin,
     },
     rules: {
       "@typescript-eslint/no-explicit-any": "error",
@@ -36,6 +34,11 @@ const eslintConfig = defineConfig([
           alphabetize: { order: "asc", caseInsensitive: true },
         },
       ],
+    },
+    settings: {
+      "import/resolver": {
+        typescript: { project: "./tsconfig.json" },
+      },
     },
   },
 ]);
